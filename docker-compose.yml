@@ -1,0 +1,45 @@
+# 基础设施：MySQL 8 + Redis 7
+# 仅用于本地开发 / 演示，账号密码与 packages/server/.env 保持一致
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: auction-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: auction_root_pwd
+      MYSQL_DATABASE: auction
+      MYSQL_USER: auction
+      MYSQL_PASSWORD: auction_pwd
+      TZ: Asia/Shanghai
+    ports:
+      - "3306:3306"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --default-time-zone=+08:00
+    volumes:
+      - auction_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-pauction_root_pwd"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    container_name: auction-redis
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - auction_redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  auction_mysql_data:
+  auction_redis_data:

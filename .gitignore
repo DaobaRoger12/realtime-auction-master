@@ -1,0 +1,33 @@
+# dependencies
+node_modules/
+.pnp.*
+
+# build output
+dist/
+build/
+*.tsbuildinfo
+
+# env & secrets  (NEVER commit API keys)
+.env
+.env.local
+.env.*.local
+*.local.env
+
+# logs
+logs/
+*.log
+npm-debug.log*
+
+# editor / os
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+
+# test / coverage
+coverage/
+.nyc_output/
+
+# docker volumes (if mapped locally)
+.data/

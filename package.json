@@ -1,0 +1,31 @@
+{
+  "name": "realtime-auction-master",
+  "version": "1.0.0",
+  "private": true,
+  "description": "实时竞拍大师 —— 抖音电商直播竞拍全栈系统",
+  "workspaces": [
+    "packages/shared",
+    "packages/server",
+    "packages/admin",
+    "packages/mobile"
+  ],
+  "scripts": {
+    "infra:up": "docker compose up -d",
+    "infra:down": "docker compose down",
+    "infra:logs": "docker compose logs -f",
+    "build:shared": "npm run build -w @auction/shared",
+    "dev:server": "npm run dev -w @auction/server",
+    "dev:admin": "npm run dev -w @auction/admin",
+    "dev:mobile": "npm run dev -w @auction/mobile",
+    "db:migrate": "npm run db:migrate -w @auction/server",
+    "db:seed": "npm run db:seed -w @auction/server",
+    "dev": "concurrently -n server,admin,mobile -c green,cyan,magenta \"npm:dev:server\" \"npm:dev:admin\" \"npm:dev:mobile\"",
+    "setup": "npm install && npm run build:shared && npm run infra:up && node ./scripts/wait-infra.mjs && npm run db:migrate && npm run db:seed"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

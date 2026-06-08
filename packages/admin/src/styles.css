@@ -1,0 +1,49 @@
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+body {
+  background: #0c0c14;
+}
+.brand-gradient {
+  background: linear-gradient(135deg, #fe2c55, #8a5cff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.stat-card {
+  background: linear-gradient(135deg, rgba(254, 44, 85, 0.12), rgba(138, 92, 255, 0.1));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 18px;
+}
+.live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.live-pill .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fe2c55;
+  animation: blink 1.2s infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0.3;
+  }
+}
+.bid-row-new {
+  animation: flashIn 0.6s ease;
+}
+@keyframes flashIn {
+  from {
+    background: rgba(254, 44, 85, 0.25);
+  }
+  to {
+    background: transparent;
+  }
+}

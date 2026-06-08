@@ -1,0 +1,21 @@
+{
+  "name": "@auction/shared",
+  "version": "1.0.0",
+  "description": "前后端共享的类型、枚举、WebSocket 事件契约与竞拍规则",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -p tsconfig.json --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
